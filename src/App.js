@@ -20,6 +20,7 @@ const Gradient = () => {
         value: 0.0,
       },
       u_mouse: { value: new Vector2(0, 0) },
+      u_mdf: { value: 0.1 }, // noise amount
       u_colorA: { value: new Color("#00012b") },
       u_colorStopA: { value: 0.1197 },
       u_colorB: { value: new Color("#042AC7") },
@@ -31,9 +32,9 @@ const Gradient = () => {
       u_colorE: { value: new Color("#6FC2FF") },
       u_colorStopE: { value: 0.6895 },
       u_colorF: { value: new Color("#A5C4FF") },
-      u_colorStopF: { value: 0.8244 },
+      u_colorStopF: { value: 0.8 },
       u_colorG: { value: new Color("#C2BEFF") },
-      u_colorStopG: { value: 0.9214 }
+      u_colorStopG: { value: 0.9 }
     }),
     []
   );
