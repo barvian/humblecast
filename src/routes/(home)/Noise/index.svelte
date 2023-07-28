@@ -7,7 +7,7 @@
 
     const PREFERRED_ASPECT = 1
     
-    let canvas: HTMLCanvasElement
+    let canvas: HTMLCanvasElement, rendered = false
 
     let width: number, height: number
     let renderer: any, program: any, mesh: any, flowmap: any // no types for OGL :(
@@ -19,7 +19,7 @@
         const { gl } = renderer
 
         flowmap = new Flowmap(gl, {
-            falloff: 1.0, // size of the stamp, percentage of the size
+            falloff: 1.5, // size of the stamp, percentage of the size
             alpha: 0.3, // opacity of the stamp
             dissipation: 0.94 // affects the speed that the stamp fades. Closer to 1 is slower
         })
@@ -65,7 +65,10 @@
         mesh = new Mesh(gl, { geometry, program })
 
         // Kick off render loop
-        requestAnimationFrame(update);
+        requestAnimationFrame((t) => {
+            update(t)
+            setTimeout(() => { rendered = true }, 200) // ugly, but prevent FOUC
+        })
     })
 
     $: renderer?.setSize(width, height)
@@ -142,6 +145,29 @@
     }
 </script>
 
-<div class="absolute inset-0" bind:clientWidth={width} bind:clientHeight={height} role="presentation" on:mousemove={handleMouseMove}>
+<div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height} role="presentation" on:mousemove={handleMouseMove}>
     <canvas bind:this={canvas} />
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-soft-light opacity-70">
+        <defs>
+            <filter id="hatch-f1" x="0" y="0">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+            </filter>
+            <linearGradient id="hatch-g1">
+                <stop offset="0" stop-color="white" stop-opacity="1" />
+                <stop offset="0.4" stop-color="white" stop-opacity="1" />
+                <stop offset="0.45" stop-color="white" stop-opacity="0" />
+            </linearGradient>
+            <mask id="hatch-m1" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%">
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#hatch-g1)" />
+            </mask>
+            <pattern id="hatch-p1" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(5)">
+                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="1" />
+            </pattern>
+            <pattern id="hatch-p2" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(-5)">
+                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="1" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hatch-p1)" filter="url(#hatch-f1)" mask="url(#hatch-m1)" />
+        <rect width="100%" height="100%" fill="url(#hatch-p2)" filter="url(#hatch-f1)" />
+    </svg>
 </div>

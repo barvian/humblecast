@@ -9,6 +9,7 @@ export default {
 	theme: {
 		colors: {
 			black: '#000',
+			white: '#fff',
 			current: 'currentColor',
 			gray: {
 				900: '#1d1d1d'
