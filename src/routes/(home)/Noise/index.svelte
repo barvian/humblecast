@@ -18,10 +18,6 @@
         })
         const { gl } = renderer
 
-        // Variable inputs to control flowmap
-        const mouse = new Vec2(-1);
-        const velocity = new Vec2();
-
         flowmap = new Flowmap(gl, {
             falloff: 1.0, // size of the stamp, percentage of the size
             alpha: 0.3, // opacity of the stamp
@@ -42,14 +38,13 @@
             fragment: 'precision highp float;\nprecision highp int;\n'+patchShaders(fragment),
             uniforms: {
                 u_time: { value: 0 },
-                // res: {
-                //     value: new Vec4(width, height, 1, 1)
-                // },
-                // img: { value: new Vec2(imgSize[0], imgSize[1]) },
+                u_res: {
+                    value: new Vec4(canvas.clientWidth, canvas.clientHeight, 1, 1)
+                },
                 // Note that the uniform is applied without using an object and value property
                 // This is because the class alternates this texture between two render targets
                 // and updates the value property after each render.
-                // tFlow: flowmap.uniform
+                u_flow: flowmap.uniform,
                 u_mdf: { value: 0.1 }, // noise amount
                 u_colorA: { value: new Color("#00012b") },
                 u_colorStopA: { value: 0.1197 },
@@ -73,12 +68,6 @@
         requestAnimationFrame(update);
     })
 
-    function update(t: DOMHighResTimeStamp) {
-        requestAnimationFrame(update);
-        program.uniforms.u_time.value = t * 0.001;
-        renderer.render({ scene: mesh });
-    }
-
     $: renderer?.setSize(width, height)
     $: aspect = width / height
     $: if (flowmap) flowmap.aspect = aspect
@@ -92,15 +81,67 @@
             a1 = (width / height) * PREFERRED_ASPECT
             a2 = 1;
         }
-        mesh.program.uniforms.res.value = new Vec4(
+        mesh.program.uniforms.u_res.value = new Vec4(
             width,
             height,
             a1,
             a2
         );
     }
+
+    const mouse = new Vec2(-1), velocity = new Vec2(), lastMouse = new Vec2()
+    let lastTime: number
+    function handleMouseMove(e: MouseEvent) {
+        e.preventDefault();
+        const { gl } = renderer
+        if (!gl) return
+
+        // Get mouse value in 0 to 1 range, with y flipped
+        mouse.set(e.x / gl.renderer.width, 1.0 - e.y / gl.renderer.height)
+        // Calculate velocity
+        if (!lastTime) {
+          // First frame
+          lastTime = performance.now()
+          lastMouse.set(e.x, e.y)
+        }
+
+        const deltaX = e.x - lastMouse.x;
+        const deltaY = e.y - lastMouse.y;
+
+        lastMouse.set(e.x, e.y);
+
+        let time = performance.now();
+
+        // Avoid dividing by 0
+        let delta = Math.max(10.4, time - lastTime);
+        lastTime = time;
+        velocity.x = deltaX / delta;
+        velocity.y = deltaY / delta;
+        // Flag update to prevent hanging velocity values when not moving
+        velocity.needsUpdate = true
+    }
+
+    function update(t: DOMHighResTimeStamp) {
+        requestAnimationFrame(update)
+
+        // Reset velocity when mouse not moving
+        if (!velocity.needsUpdate) {
+          mouse.set(-1);
+          velocity.set(0);
+        }
+        velocity.needsUpdate = false;
+        // Update flowmap inputs
+        flowmap.aspect = aspect;
+        flowmap.mouse.copy(mouse);
+        // Ease velocity input, slower when fading out
+        flowmap.velocity.lerp(velocity, velocity.len ? 0.15 : 0.1);
+        flowmap.update();
+        
+        program.uniforms.u_time.value = t * 0.001;
+        renderer.render({ scene: mesh });
+    }
 </script>
 
-<div class="absolute inset-0" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="absolute inset-0" bind:clientWidth={width} bind:clientHeight={height} role="presentation" on:mousemove={handleMouseMove}>
     <canvas bind:this={canvas} />
 </div>
