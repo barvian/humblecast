@@ -26,7 +26,7 @@
         flowmap = new Flowmap(gl, {
             falloff: 1.5, // size of the stamp, percentage of the size
             alpha: 0.3, // opacity of the stamp
-            dissipation: 0.94 // affects the speed that the stamp fades. Closer to 1 is slower
+            dissipation: 0.95 // affects the speed that the stamp fades. Closer to 1 is slower
         })
 
         // Triangle that includes -1 to 1 range for 'position', and 0 to 1 range for 'uv'.
@@ -139,8 +139,8 @@
         // Update flowmap inputs
         flowmap.aspect = aspect;
         flowmap.mouse.copy(nMouse);
-        // Ease velocity input, slower when fading out
-        flowmap.velocity.lerp(velocity, velocity.len ? 0.15 : 0.1);
+        // Slower when moving, faster when fading out
+        flowmap.velocity.lerp(velocity, velocity.len ? 0.1 : 0.5);
         flowmap.update();
         
         program.uniforms.u_time.value = t * 0.001;
@@ -150,10 +150,10 @@
 
 <div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height}>
     <canvas bind:this={canvas} />
-    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-opacity opacity-90">
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-overlay opacity-80">
         <defs>
             <filter id="hatch-f1" x="0" y="0">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" />
             </filter>
             <linearGradient id="hatch-g1">
                 <stop offset="0" stop-color="white" />
