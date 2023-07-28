@@ -1,0 +1,41 @@
+/* @font-face {
+	font-family: 'Clash Display';
+	src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+		url('/fonts/ClashDisplay-Variable.woff') format('woff'),
+		url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
+	font-weight: 200 700;
+	font-style: normal;
+}*/
+
+@tailwind base;
+@tailwind components;
+
+:root {
+	@apply bg-gray-900 antialiased overflow-x-hidden scroll-smooth;
+}
+
+.container {
+	@apply mx-auto w-full max-w-[theme(screens.xl)] px-[max(theme(padding.5),5vw)] xl:px-5;
+}
+
+:is([class*='entered:']) {
+	transition: all 0.7s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+
+.overlap {
+	display: grid;
+	grid-template-areas: 'overlap';
+}
+
+.inline-overlap {
+	display: inline-grid;
+	grid-template-areas: 'overlap';
+}
+.overlap > :not(.absolute),
+.inline-overlap > :not(.absolute),
+.overlap-item,
+.inline-overlap-item {
+	grid-area: overlap;
+}
+
+@tailwind utilities;

@@ -1,19 +1,3 @@
-export const vertexShader = `
-varying vec2 vUv;
-
-void main() {
-  vUv = uv;
-
-  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-  vec4 viewPosition = viewMatrix * modelPosition;
-  vec4 projectedPosition = projectionMatrix * viewPosition;
-
-  gl_Position = projectedPosition;
-}
-
-`
-
-export const fragmentShader = /* glsl */ `
 varying vec2 vUv;
 
 uniform float u_time;
@@ -40,16 +24,7 @@ float lerp(float a, float b, float x) {
   return clamp((x - a) / (b - a), 0.0, 1.0);
 }
 
-vec3 rgb(int r, int g, int b) {
-  return vec3(float(r)/255., float(g)/255., float(b)/255.);
-}
-
-void main() {
-  vec2 p = vUv;
-
-  p.x -= u_time * 0.1; /* pan to the right */
-  p.y -= u_time * 0.1; /* pan up */
-
+vec3 displace(vec2 p) {
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
   gln_tFBMOpts fbmOpts = gln_tFBMOpts(1.0, 0.5, 0.5, 2.0 /* scale */, 1.0 /* flatness */, 8 /* octaves */, false /* terbulance */, false);
 
@@ -68,11 +43,21 @@ void main() {
   color = mix(color, u_colorD, smoothstep(u_colorStopC, u_colorStopD, z));  
   color = mix(color, u_colorE, smoothstep(u_colorStopD, u_colorStopE, z));  
   color = mix(color, u_colorF, smoothstep(u_colorStopE, u_colorStopF, z));  
-  color = mix(color, u_colorG, smoothstep(u_colorStopF, u_colorStopG, z));  
-  
-  float grain = (fract(sin(dot(p, vec2(12.9898,78.233)*2.0)) * 43758.5453));
-  color -= grain * u_mdf;
-  gl_FragColor = vec4(color, 1.0);
+  color = mix(color, u_colorG, smoothstep(u_colorStopF, u_colorStopG, z));
+
+  return color;
 }
 
-`
+void main() {
+  vec2 p = vUv;
+  p.x -= u_time * 0.1; /* pan to the right */
+  p.y -= u_time * 0.1; /* pan up */
+
+  vec3 color = displace(p);
+  
+  // Add grain
+  float grain = (fract(sin(dot(p, vec2(12.9898,78.233)*2.0)) * 43758.5453));
+  color -= grain * u_mdf;
+
+  gl_FragColor = vec4(color, 1.0);
+}
