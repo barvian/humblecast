@@ -7,7 +7,7 @@
 
     export let mouse: { x: number, y: number } | undefined
 
-    const PREFERRED_ASPECT = 0.75
+    const PREFERRED_ASPECT = 0.9
     
     let canvas: HTMLCanvasElement, rendered = false
 

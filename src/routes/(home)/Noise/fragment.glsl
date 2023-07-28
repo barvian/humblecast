@@ -27,8 +27,8 @@ float lerp(float a, float b, float x) {
 }
 
 vec3 displace(vec2 _p) {
-  vec2 p = vec2(_p.x * 1./u_res.z, _p.y * 1./u_res.w); // scale by preferred aspect ratio
-  
+  vec2 p = vec2(_p.x/u_res.z, _p.y/u_res.w); // scale by preferred aspect ratio
+
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
   float z = gln_normalize(gln_perlin(p));
 
@@ -36,6 +36,7 @@ vec3 displace(vec2 _p) {
   z += sin(p.x * 3. + u_time * 0.5) * 0.1;
   z += sin(p.y * 2. + u_time * 0.5 + 0.5) * 0.1;
 
+  // Gradient
   vec3 color = mix(u_colorA, u_colorB, smoothstep(u_colorStopA, u_colorStopB, z));
   color = mix(color, u_colorC, smoothstep(u_colorStopB, u_colorStopC, z));  
   color = mix(color, u_colorD, smoothstep(u_colorStopC, u_colorStopD, z));  
