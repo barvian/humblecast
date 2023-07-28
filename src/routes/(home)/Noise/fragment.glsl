@@ -31,7 +31,7 @@ vec3 displace(vec2 p) {
   gln_tFBMOpts fbmOpts = gln_tFBMOpts(1.0, 0.55 /* smoothing? basically */, 0.5, 2.0 /* scale */, 1.0 /* flatness */, 8 /* octaves */, false /* terbulance */, false);
 
   // TODO: thematically it seems like these should be sine waves cause it's audio-related, but I like the look of this more
-  gln_tGerstnerWaveOpts A = gln_tGerstnerWaveOpts(vec2(0.0, 1.0), 0.5, 2.0);
+  gln_tGerstnerWaveOpts A = gln_tGerstnerWaveOpts(vec2(0.0, -1.0), 0.5, 2.0);
   // gln_tGerstnerWaveOpts B = gln_tGerstnerWaveOpts(vec2(0.0, 1.0), 0.25, 4.0);
   // gln_tGerstnerWaveOpts C = gln_tGerstnerWaveOpts(vec2(1.0, 1.0), 0.15, 6.0);
   gln_tGerstnerWaveOpts D = gln_tGerstnerWaveOpts(vec2(1.0, 1.0), 0.4, 2.0);

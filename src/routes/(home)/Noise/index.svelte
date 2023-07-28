@@ -152,12 +152,25 @@
                 <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
             </filter>
             <linearGradient id="hatch-g1">
-                <stop offset="0" stop-color="white" stop-opacity="1" />
-                <stop offset="0.4" stop-color="white" stop-opacity="1" />
-                <stop offset="0.45" stop-color="white" stop-opacity="0" />
+                <stop offset="0" stop-color="white" />
+                <stop offset="0.4" stop-color="white" />
+                <stop offset="0.45" stop-color="black" />
             </linearGradient>
-            <mask id="hatch-m1" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%">
+            <linearGradient id="hatch-g2" gradientTransform="rotate(-70 0.5 0.5)">
+                <stop offset="0.35" stop-color="white" />
+                <stop offset="1" stop-color="black" />
+            </linearGradient>
+            <linearGradient id="hatch-g3" gradientTransform="rotate(70 0.5 0.5)">
+                <stop offset="0.35" stop-color="white" />
+                <stop offset="1" stop-color="black" />
+            </linearGradient>
+            <mask id="hatch-m1" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%" style:mask-type="luminance">
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#hatch-g1)" />
+            </mask>
+            <mask id="hatch-m2" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%" style:mask-type="luminance">
+                <rect x="0" y="0" width="40%" height="100%" fill="white" />
+                <rect x="40%" y="0" width="100%" height="50%" fill="url(#hatch-g2)" />
+                <rect x="40%" y="50%" width="100%" height="50%" fill="url(#hatch-g3)" />
             </mask>
             <pattern id="hatch-p1" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(5)">
                 <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="1" />
@@ -167,6 +180,6 @@
             </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#hatch-p1)" filter="url(#hatch-f1)" mask="url(#hatch-m1)" />
-        <rect width="100%" height="100%" fill="url(#hatch-p2)" filter="url(#hatch-f1)" />
+        <rect width="100%" height="100%" fill="url(#hatch-p2)" filter="url(#hatch-f1)" mask="url(#hatch-m2)" />
     </svg>
 </div>
