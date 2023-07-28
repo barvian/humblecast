@@ -50,7 +50,7 @@ vec3 displace(vec2 _p) {
 void main() {
   vec2 uv = gl_FragCoord.xy / u_res.xy;
   uv.x -= u_time * 0.1; /* pan to the right */
-  uv.y -= u_time * 0.1; /* and up */
+  uv.y += u_time * 0.1; /* and down */
 
   // Work in mouse displacement
   // Copied from https://tympanus.net/Development/FlowmapDeformation/index2.html
