@@ -8,7 +8,7 @@
 	<meta name="description" content="Maxwell Barvian's take on Awsmd's design." />
 </svelte:head>
 
-<header class="relative bg-[#0f7Bf9]">
+<header class="relative bg-[#0f7Bf9] min-h-[50vw]">
 	<Noise />
 	<div class="container relative">
 		<nav>

@@ -5,7 +5,7 @@
     import vertex from './vertex.glsl?raw'
     import { patchShaders } from 'gl-noise/build/glNoise.m'
 
-    const PREFERRED_ASPECT = 1
+    const PREFERRED_ASPECT = 0.75
     
     let canvas: HTMLCanvasElement, rendered = false
 
@@ -13,7 +13,7 @@
     let renderer: any, program: any, mesh: any, flowmap: any // no types for OGL :(
     onMount(() => {
         renderer = new Renderer({
-            dpr: 2,
+            dpr: 1, // it's a gradient after all
             canvas
         })
         const { gl } = renderer
@@ -49,7 +49,7 @@
                 u_colorA: { value: new Color("#00012b") },
                 u_colorStopA: { value: 0.1197 },
                 u_colorB: { value: new Color("#042AC7") },
-                u_colorStopB: { value: 0.2606 },
+                u_colorStopB: { value: 0.2206 },
                 u_colorC: { value: new Color("#0536D8") },
                 u_colorStopC: { value: 0.2826 },
                 u_colorD: { value: new Color("#1185FB") },
@@ -147,7 +147,7 @@
 
 <div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height} role="presentation" on:mousemove={handleMouseMove}>
     <canvas bind:this={canvas} />
-    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-soft-light opacity-70">
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-soft-light">
         <defs>
             <filter id="hatch-f1" x="0" y="0">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
