@@ -5,11 +5,11 @@
     import vertex from './vertex.glsl?raw'
     import { patchShaders } from 'gl-noise/build/glNoise.m'
 
+    export let mouse: { x: number, y: number } | undefined
+
     const PREFERRED_ASPECT = 0.75
     
     let canvas: HTMLCanvasElement, rendered = false
-
-    export let mouse: { x: number, y: number } | undefined
 
     let width: number, height: number
     let renderer: any, program: any, mesh: any, flowmap: any // no types for OGL :(
@@ -55,7 +55,7 @@
                 u_colorC: { value: new Color("#0536D8") },
                 u_colorStopC: { value: 0.2826 },
                 u_colorD: { value: new Color("#1185FB") },
-                u_colorStopD: { value: 0.42 },
+                u_colorStopD: { value: 0.45 },
                 u_colorE: { value: new Color("#6FC2FF") },
                 u_colorStopE: { value: 0.6895 },
                 u_colorF: { value: new Color("#A5C4FF") },
@@ -146,10 +146,10 @@
 
 <div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height}>
     <canvas bind:this={canvas} />
-    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-soft-light">
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-overlay opacity-90">
         <defs>
             <filter id="hatch-f1" x="0" y="0">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" />
             </filter>
             <linearGradient id="hatch-g1">
                 <stop offset="0" stop-color="white" />
@@ -172,11 +172,11 @@
                 <rect x="40%" y="0" width="100%" height="50%" fill="url(#hatch-g2)" />
                 <rect x="40%" y="50%" width="100%" height="50%" fill="url(#hatch-g3)" />
             </mask>
-            <pattern id="hatch-p1" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(5)">
-                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="1" />
+            <pattern id="hatch-p1" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(6)">
+                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="0.75" />
             </pattern>
-            <pattern id="hatch-p2" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(-5)">
-                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="1" />
+            <pattern id="hatch-p2" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(-6)">
+                <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="0.75" />
             </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#hatch-p1)" filter="url(#hatch-f1)" mask="url(#hatch-m1)" />
