@@ -28,12 +28,11 @@ float lerp(float a, float b, float x) {
 
 vec3 displace(vec2 p) {
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
-  gln_tFBMOpts fbmOpts = gln_tFBMOpts(1.0, 0.65 /* smoothing? basically */, 0.5, 2. /* scale */, 1.0 /* flatness */, 8 /* octaves */, false /* terbulance */, false);
+  float z = gln_normalize(gln_perlin(p));
 
-  float z = gln_normalize(gln_pfbm(p, fbmOpts));
   // Sinuoidal distortion (fitting for sound waves?)
-  z += sin(p.x * 3. + u_time * 0.8) * 0.1;
-  z += sin(p.y * 2. + u_time * 0.8 + 0.5) * 0.1;
+  z += sin(p.x * 3. + u_time * 0.5) * 0.1;
+  z += sin(p.y * 2. + u_time * 0.5 + 0.5) * 0.1;
 
   vec3 color = mix(u_colorA, u_colorB, smoothstep(u_colorStopA, u_colorStopB, z));
   color = mix(color, u_colorC, smoothstep(u_colorStopB, u_colorStopC, z));  
@@ -48,7 +47,7 @@ vec3 displace(vec2 p) {
 void main() {
   vec2 uv = gl_FragCoord.xy / u_res.xy;
   uv.x -= u_time * 0.1; /* pan to the right */
-  uv.y -= u_time * 0.1; /* pan up */
+  uv.y -= u_time * 0.1; /* and up */
 
   // Work in mouse displacement
   // Copied from https://tympanus.net/Development/FlowmapDeformation/index2.html
