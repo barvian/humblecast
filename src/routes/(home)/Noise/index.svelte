@@ -150,31 +150,31 @@
 
 <div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height}>
     <canvas bind:this={canvas} />
-    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-overlay opacity-90">
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-opacity opacity-90">
         <defs>
             <filter id="hatch-f1" x="0" y="0">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" />
             </filter>
             <linearGradient id="hatch-g1">
                 <stop offset="0" stop-color="white" />
-                <stop offset="0.4" stop-color="white" />
+                <stop offset="0.35" stop-color="white" />
                 <stop offset="0.45" stop-color="black" />
             </linearGradient>
             <linearGradient id="hatch-g2" gradientTransform="rotate(-70 0.5 0.5)">
                 <stop offset="0.35" stop-color="white" />
-                <stop offset="1" stop-color="black" />
+                <stop offset="0.8" stop-color="white" stop-opacity="0" />
             </linearGradient>
             <linearGradient id="hatch-g3" gradientTransform="rotate(70 0.5 0.5)">
                 <stop offset="0.35" stop-color="white" />
-                <stop offset="1" stop-color="black" />
+                <stop offset="0.8" stop-color="white" stop-opacity="0" />
             </linearGradient>
             <mask id="hatch-m1" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%" style:mask-type="luminance">
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#hatch-g1)" />
             </mask>
             <mask id="hatch-m2" maskUnits="userSpaceOnUse" x="0%" y="0%" width="100%" height="100%" style:mask-type="luminance">
-                <rect x="0" y="0" width="40%" height="100%" fill="white" />
-                <rect x="40%" y="0" width="100%" height="50%" fill="url(#hatch-g2)" />
-                <rect x="40%" y="50%" width="100%" height="50%" fill="url(#hatch-g3)" />
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#hatch-g1)" />
+                <rect x="0" y="0" width="100%" height="50%" fill="url(#hatch-g2)" />
+                <rect x="0" y="50%" width="100%" height="50%" fill="url(#hatch-g3)" />
             </mask>
             <pattern id="hatch-p1" patternUnits="userSpaceOnUse" width="20.5" height="20.5" patternTransform="rotate(6)">
                 <line x1="0" y="0" x2="0" y2="20.5" stroke="#ffffff" vector-effect="non-scaling-stroke" stroke-width="0.75" />
