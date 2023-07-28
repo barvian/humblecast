@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { observe } from '$lib/actions'
   import Noise from './Noise/index.svelte'
+
+  let mouse: { x: number, y: number } | undefined
 </script>
 
 <svelte:head>
@@ -8,8 +10,9 @@
 	<meta name="description" content="Maxwell Barvian's take on Awsmd's design." />
 </svelte:head>
 
-<header class="relative bg-[#0f7Bf9] min-h-[50vw]">
-	<Noise />
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<header class="relative bg-[#0f7Bf9] min-h-[50vw]" on:mousemove={({ x, y }) => mouse = { x, y }}>
+	<Noise {mouse} />
 	<div class="container relative">
 		<nav>
 			humblecast

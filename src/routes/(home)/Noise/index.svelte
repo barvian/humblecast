@@ -9,6 +9,8 @@
     
     let canvas: HTMLCanvasElement, rendered = false
 
+    export let mouse: { x: number, y: number } | undefined
+
     let width: number, height: number
     let renderer: any, program: any, mesh: any, flowmap: any // no types for OGL :(
     onMount(() => {
@@ -92,26 +94,23 @@
         );
     }
 
-    const mouse = new Vec2(-1), velocity = new Vec2(), lastMouse = new Vec2()
+    const nMouse = new Vec2(-1), velocity = new Vec2(), lastNMouse = new Vec2()
     let lastTime: number
-    function handleMouseMove(e: MouseEvent) {
-        e.preventDefault();
-        const { gl } = renderer
-        if (!gl) return
-
+    // Handle mouse move
+    $: if (renderer?.gl && mouse) {
         // Get mouse value in 0 to 1 range, with y flipped
-        mouse.set(e.x / gl.renderer.width, 1.0 - e.y / gl.renderer.height)
+        nMouse.set(mouse.x / renderer.gl.renderer.width, 1.0 - mouse.y / renderer.gl.renderer.height)
         // Calculate velocity
         if (!lastTime) {
           // First frame
           lastTime = performance.now()
-          lastMouse.set(e.x, e.y)
+          lastNMouse.set(mouse.x, mouse.y)
         }
 
-        const deltaX = e.x - lastMouse.x;
-        const deltaY = e.y - lastMouse.y;
+        const deltaX = mouse.x - lastNMouse.x;
+        const deltaY = mouse.y - lastNMouse.y;
 
-        lastMouse.set(e.x, e.y);
+        lastNMouse.set(mouse.x, mouse.y);
 
         let time = performance.now();
 
@@ -129,13 +128,13 @@
 
         // Reset velocity when mouse not moving
         if (!velocity.needsUpdate) {
-          mouse.set(-1);
+          nMouse.set(-1);
           velocity.set(0);
         }
         velocity.needsUpdate = false;
         // Update flowmap inputs
         flowmap.aspect = aspect;
-        flowmap.mouse.copy(mouse);
+        flowmap.mouse.copy(nMouse);
         // Ease velocity input, slower when fading out
         flowmap.velocity.lerp(velocity, velocity.len ? 0.15 : 0.1);
         flowmap.update();
@@ -145,7 +144,7 @@
     }
 </script>
 
-<div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height} role="presentation" on:mousemove={handleMouseMove}>
+<div class="absolute inset-0 opacity-0 transition duration-1000" class:opacity-100={rendered} bind:clientWidth={width} bind:clientHeight={height}>
     <canvas bind:this={canvas} />
     <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full top-0 left-0 mix-blend-soft-light">
         <defs>

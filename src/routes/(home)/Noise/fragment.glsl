@@ -28,7 +28,7 @@ float lerp(float a, float b, float x) {
 
 vec3 displace(vec2 p) {
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
-  gln_tFBMOpts fbmOpts = gln_tFBMOpts(1.0, 0.5, 0.5, 2.0 /* scale */, 1.0 /* flatness */, 8 /* octaves */, false /* terbulance */, false);
+  gln_tFBMOpts fbmOpts = gln_tFBMOpts(1.0, 0.55 /* smoothing? basically */, 0.5, 2.0 /* scale */, 1.0 /* flatness */, 8 /* octaves */, false /* terbulance */, false);
 
   // TODO: thematically it seems like these should be sine waves cause it's audio-related, but I like the look of this more
   gln_tGerstnerWaveOpts A = gln_tGerstnerWaveOpts(vec2(0.0, 1.0), 0.5, 2.0);
