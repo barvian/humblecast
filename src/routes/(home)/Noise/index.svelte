@@ -7,7 +7,7 @@
 
     export let mouse: { x: number, y: number } | undefined
 
-    const PREFERRED_ASPECT = 0.9
+    const PREFERRED_ASPECT = 0.95
     
     let canvas: HTMLCanvasElement, rendered = false
 
@@ -48,20 +48,20 @@
                 // and updates the value property after each render.
                 u_flow: flowmap.uniform,
                 u_mdf: { value: 0.1 }, // noise amount
-                u_colorA: { value: new Color("#00012b") },
-                u_colorStopA: { value: 0.1197 },
+                u_colorA: { value: new Color("#000025") },
+                u_colorStopA: { value: 0.06 },
                 u_colorB: { value: new Color("#042AC7") },
-                u_colorStopB: { value: 0.2206 },
-                u_colorC: { value: new Color("#0536D8") },
-                u_colorStopC: { value: 0.2826 },
+                u_colorStopB: { value: 0.16 },
+                u_colorC: { value: new Color("#0733E6") },
+                u_colorStopC: { value: 0.2 },
                 u_colorD: { value: new Color("#1185FB") },
                 u_colorStopD: { value: 0.45 },
                 u_colorE: { value: new Color("#6FC2FF") },
                 u_colorStopE: { value: 0.6895 },
                 u_colorF: { value: new Color("#A5C4FF") },
-                u_colorStopF: { value: 0.8 },
+                u_colorStopF: { value: 0.9 },
                 u_colorG: { value: new Color("#C2BEFF") },
-                u_colorStopG: { value: 0.9 }
+                u_colorStopG: { value: 1. }
             }
         })
         mesh = new Mesh(gl, { geometry, program })

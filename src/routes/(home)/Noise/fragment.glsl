@@ -37,12 +37,12 @@ vec3 displace(vec2 _p) {
   z += sin(p.y * 2. + u_time * 0.5 + 0.5) * 0.1;
 
   // Gradient
-  vec3 color = mix(u_colorA, u_colorB, smoothstep(u_colorStopA, u_colorStopB, z));
-  color = mix(color, u_colorC, smoothstep(u_colorStopB, u_colorStopC, z));  
-  color = mix(color, u_colorD, smoothstep(u_colorStopC, u_colorStopD, z));  
-  color = mix(color, u_colorE, smoothstep(u_colorStopD, u_colorStopE, z));  
-  color = mix(color, u_colorF, smoothstep(u_colorStopE, u_colorStopF, z));  
-  color = mix(color, u_colorG, smoothstep(u_colorStopF, u_colorStopG, z));
+  vec3 color = mix(u_colorA, u_colorB, lerp(u_colorStopA, u_colorStopB, z));
+  color = mix(color, u_colorC, lerp(u_colorStopB, u_colorStopC, z));  
+  color = mix(color, u_colorD, lerp(u_colorStopC, u_colorStopD, z));  
+  color = mix(color, u_colorE, lerp(u_colorStopD, u_colorStopE, z));  
+  color = mix(color, u_colorF, lerp(u_colorStopE, u_colorStopF, z));  
+  color = mix(color, u_colorG, lerp(u_colorStopF, u_colorStopG, z));
 
   return color;
 }
