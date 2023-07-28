@@ -4,10 +4,13 @@
     import fragment from './fragment.glsl?raw'
     import vertex from './vertex.glsl?raw'
     import { patchShaders } from 'gl-noise/build/glNoise.m'
+  import { scale } from "svelte/transition"
+
+  const SCALE = 1.2
+  const PREFERRED_ASPECT = 0.9
 
     export let mouse: { x: number, y: number } | undefined
 
-    const PREFERRED_ASPECT = 0.95
     
     let canvas: HTMLCanvasElement, rendered = false
 
@@ -39,6 +42,7 @@
             vertex,
             fragment: 'precision highp float;\nprecision highp int;\n'+patchShaders(fragment),
             uniforms: {
+                u_scale: { value: SCALE },
                 u_time: { value: 0 },
                 u_res: {
                     value: new Vec4(canvas.clientWidth, canvas.clientHeight, 1, 1)

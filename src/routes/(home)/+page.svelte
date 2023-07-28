@@ -16,15 +16,25 @@
 	<div class="container relative">
 		<nav>
 			humblecast
+			<span class="cursor-not-allowed">Features</span>
+			<span class="cursor-not-allowed">Switch to Humblecast</span>
+			<span class="cursor-not-allowed">Pricing</span>
+			<span class="cursor-not-allowed">Blog</span>
+			<span class="cursor-not-allowed">
+				Log in
+			</span>
+			<span class="cursor-not-allowed">
+				Sign up
+			</span>
 		</nav>
-		<h1>
+		<h1 class="text-9xl/[82.5%] font-semibold">
 			Create and
-			<div aria-hidden class="cursor-not-allowed">
+			<div aria-hidden hidden class="cursor-not-allowed">
 				Join for free
 			</div>
 			monetize your podcast
 		</h1>
-		<p>
+		<p class="text-lg [text-shadow:0_0_3px_rgba(0,0,0,0.25)]">
 			Distribute your podcast to the most popular listening apps,
 			including Spotify with just a few simple steps.
 		</p>

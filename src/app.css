@@ -1,17 +1,29 @@
-/* @font-face {
-	font-family: 'Clash Display';
-	src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
-		url('/fonts/ClashDisplay-Variable.woff') format('woff'),
-		url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
-	font-weight: 200 700;
+@font-face {
+	font-family: 'Degular';
+	src: url('/fonts/DegularDemo-Regular.otf') format('opentype');
+	font-weight: 400;
 	font-style: normal;
-}*/
+}
+
+@font-face {
+	font-family: 'Degular';
+	src: url('/fonts/DegularDemo-Medium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Degular';
+	src: url('/fonts/DegularDemo-Semibold.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+}
 
 @tailwind base;
 @tailwind components;
 
 :root {
-	@apply bg-gray-900 antialiased overflow-x-hidden scroll-smooth;
+	@apply bg-gray-900 text-white antialiased overflow-x-hidden scroll-smooth;
 }
 
 .container {

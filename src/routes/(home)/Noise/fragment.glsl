@@ -2,6 +2,7 @@ varying vec2 vUv;
 
 uniform float u_time;
 uniform vec2 u_mouse;
+uniform float u_scale;
 uniform float u_mdf;
 uniform sampler2D u_flow;
 uniform vec4 u_res;
@@ -30,7 +31,7 @@ vec3 displace(vec2 _p) {
   vec2 p = vec2(_p.x/u_res.z, _p.y/u_res.w); // scale by preferred aspect ratio
 
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
-  float z = gln_normalize(gln_perlin(p));
+  float z = gln_normalize(gln_perlin(p * u_scale));
 
   // Sinuoidal distortion (fitting for sound waves?)
   z += sin(p.x * 3. + u_time * 0.5) * 0.1;
@@ -50,7 +51,7 @@ vec3 displace(vec2 _p) {
 void main() {
   vec2 uv = gl_FragCoord.xy / u_res.xy;
   uv.x -= u_time * 0.1; /* pan to the right */
-  uv.y += u_time * 0.1; /* and down */
+  uv.y += sin(u_time * 0.1);
 
   // Work in mouse displacement
   // Copied from https://tympanus.net/Development/FlowmapDeformation/index2.html
