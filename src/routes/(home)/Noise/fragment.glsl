@@ -26,7 +26,9 @@ float lerp(float a, float b, float x) {
   return clamp((x - a) / (b - a), 0.0, 1.0);
 }
 
-vec3 displace(vec2 p) {
+vec3 displace(vec2 _p) {
+  vec2 p = vec2(_p.x * 1./u_res.z, _p.y * 1./u_res.w); // scale by preferred aspect ratio
+  
   // Docs: https://farazzshaikh.github.io/glNoise/module-Common.html
   float z = gln_normalize(gln_perlin(p));
 
