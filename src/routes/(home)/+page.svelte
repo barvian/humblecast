@@ -76,7 +76,7 @@
 	<div class="container grid grid-cols-2 gap-2xl items-start">
 		<div class="flex items-stretch w-full">
 			<div class="rounded-l-full bg-[#d4dcde] flex-1 relative overflow-hidden">
-				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0 scale-150 loaded:scale-100" />
+				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0" />
 			</div>
 			<div class="rounded-full self-center flex-shrink-0 bg-white w-[19%] aspect-square flex items-center justify-center gap-[5%]">
 				<div class="w-[5%] bg-gray-900 rounded-full h-1/3" />
