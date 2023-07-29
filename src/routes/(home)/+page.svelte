@@ -76,7 +76,7 @@
 	<div class="container grid grid-cols-2 gap-2xl items-start">
 		<div class="flex items-stretch w-full">
 			<div class="rounded-l-full bg-[#d4dcde] flex-1 relative overflow-hidden">
-				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0" duration={1350} />
+				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0 opacity-0 loaded:opacity-100 transition duration-700" />
 			</div>
 			<div class="rounded-full self-center flex-shrink-0 bg-white w-[19%] aspect-square flex items-center justify-center gap-[5%]">
 				<div class="w-[5%] bg-gray-900 rounded-full h-1/3" />
@@ -95,8 +95,8 @@
 				<span class="font-semibold text-2xl/[85%] @md:-order-1">Active creators<br/>and listeners</span>
 				<hr class="@md:col-span-2 border-white border-DEFAULT" />
 				<div class="whitespace-nowrap self-start @md:mt-2 order-last @md:order-[unset]">
-					<div class="w-10 inline-block hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl} alt="User headshot" class="w-full h-full object-cover" /></div>
-					<div class="w-10 inline-block -ml-4 hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl2} alt="User headshot" class="w-full h-full object-cover" /></div>
+					<div class="w-10 inline-block hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl} alt="User headshot" class="w-full h-full object-cover opacity-0 loaded:opacity-100 transition duration-500" /></div>
+					<div class="w-10 inline-block -ml-4 hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl2} alt="User headshot" class="w-full h-full object-cover opacity-0 loaded:opacity-100 transition duration-500" /></div>
 					<div class="inline-flex items-center align-middle gap-4 relative -ml-4 cursor-not-allowed group">
 						<div class="bg-white flex items-center justify-center flex-shrink-0 group-hover:-translate-y-1.5 transition border-2 border-gray-900 w-10 aspect-square rounded-full overflow-hidden">
 							<svg class="w-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
