@@ -47,15 +47,15 @@
 			Distribute your podcast to the most popular listening apps,
 			including Spotify, with just a few simple steps.
 		</p>
-		<div class="flex whitespace-nowrap items-stretch mt-lg">
-			<span class="flex items-center group gap-3 transition-all hover:gap-5 cursor-not-allowed text-lg font-medium bg-white rounded-full text-[#000322] py-[0.65em] px-[1.5em]">
+		<div class="flex flex-wrap whitespace-nowrap items-stretch mt-lg">
+			<span class="flex mb-4 items-center group gap-3 transition-all hover:gap-5 cursor-not-allowed text-lg font-medium bg-white rounded-full text-[#000322] py-[0.65em] px-[1.5em]">
 				<span class="block relative overflow-hidden">
 					<span class="block group-hover:-translate-y-[108%] group-hover:skew-y-6 transition duration-250">Get started</span>
 					<span aria-hidden class="absolute top-full left-0 skew-y-6 group-hover:skew-y-0 group-hover:-translate-y-full transition duration-250">Get started</span>
 				</span>
 				<Arrow class="h-3" />
 			</span>
-			<span class="cursor-not-allowed group text-lg font-medium rounded-full block py-[0.65em] px-[1.5em] [box-shadow:inset_0_0_2px_rgba(0,0,0,0.15),inset_0_0_0_1px_white,0_0_2px_rgba(0,0,0,0.2)] relative overflow-hidden">
+			<span class="cursor-not-allowed mb-4 group text-lg font-medium rounded-full block py-[0.65em] px-[1.5em] [box-shadow:inset_0_0_2px_rgba(0,0,0,0.15),inset_0_0_0_1px_white,0_0_2px_rgba(0,0,0,0.2)] relative overflow-hidden">
 				<span class="block relative overflow-hidden">
 					<span class="block group-hover:-translate-y-[108%] group-hover:skew-y-6 transition duration-250 [text-shadow:0_0_2px_rgba(0,0,0,0.25)]">Switch to Humblecast</span>
 				</span>
@@ -76,7 +76,7 @@
 	<div class="container grid grid-cols-2 gap-2xl items-start">
 		<div class="flex items-stretch w-full">
 			<div class="rounded-l-full bg-[#d4dcde] flex-1 relative overflow-hidden">
-				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0" />
+				<Image src={man} class="object-cover object-center w-full h-full absolute inset-0" duration={1350} />
 			</div>
 			<div class="rounded-full self-center flex-shrink-0 bg-white w-[19%] aspect-square flex items-center justify-center gap-[5%]">
 				<div class="w-[5%] bg-gray-900 rounded-full h-1/3" />
