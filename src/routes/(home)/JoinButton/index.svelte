@@ -1,11 +1,14 @@
 <script lang="ts">
   import mic from './mic.png?run&width=86'
   import Image from '$lib/Image.svelte'
+  import Arrow from '$lib/icons/Arrow.svelte'
+  let cls = ''
+  export { cls as class }
   let loaded = false
   let filterId: string
 </script>
 
-<div class="inline-flex align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7">
+<div class="{cls} inline-flex align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7">
     <div class="relative aspect-square h-[5.4375rem] flex-shrink-0">
         <!-- Backdrop blur -->
         <div class="inset-0 absolute backdrop-blur-[8px] rounded-full" />
@@ -41,8 +44,8 @@
         <!-- Mic -->
         <Image src={mic} bind:loaded bind:filterId class="!bg-none absolute h-1/2 w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" />
         <!-- Arrow -->
-        <div class="w-8 rounded-full bg-white aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2">
-
+        <div class="w-8 rounded-full bg-white flex items-center justify-center aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2">
+            <Arrow class="h-3 -rotate-45" />
         </div>
     </div>
     Join for free

@@ -38,9 +38,9 @@
 				</span>
 			</div>
 		</nav>
-		<h1 class="text-4xl/[75.5%] font-semibold mb-xl">
+		<h1 class="text-4xl/[85.5%] @6xl:leading-[75%] font-semibold mb-xl">
 			Create and
-			<JoinButton />
+			<JoinButton class="hidden @6xl:inline-flex" />
 			monetize your podcast
 		</h1>
 		<p class="text-lg [text-shadow:0_0_2px_rgba(0,0,0,0.25)] max-w-[45ch]">
@@ -94,7 +94,7 @@
 				<span class="uppercase font-semibold text-3xl/[85%]">873k</span>
 				<span class="font-semibold text-2xl/[85%] @md:-order-1">Active creators<br/>and listeners</span>
 				<hr class="@md:col-span-2 border-white border-DEFAULT" />
-				<div class="whitespace-nowrap self-start mt-2 order-last @md:order-[unset]">
+				<div class="whitespace-nowrap self-start @md:mt-2 order-last @md:order-[unset]">
 					<div class="w-10 inline-block hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl} alt="User headshot" class="w-full h-full object-cover" /></div>
 					<div class="w-10 inline-block -ml-4 hover:-translate-y-1.5 transition align-middle relative bg-white border-2 border-gray-900 aspect-square rounded-full will-change-transform overflow-hidden"><Image src={girl2} alt="User headshot" class="w-full h-full object-cover" /></div>
 					<div class="inline-flex items-center align-middle gap-4 relative -ml-4 cursor-not-allowed group">
