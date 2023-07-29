@@ -2,6 +2,7 @@
   import mic from './mic.png?run&width=86'
   import Image from '$lib/Image.svelte'
   let loaded = false
+  let filterId: string
 </script>
 
 <div class="inline-flex align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7">
@@ -38,7 +39,7 @@
             </defs>
         </svg>
         <!-- Mic -->
-        <Image src={mic} bind:loaded class="!bg-none absolute h-1/2 w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" />
+        <Image src={mic} bind:loaded bind:filterId class="!bg-none absolute h-1/2 w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" />
         <!-- Arrow -->
         <div class="w-8 rounded-full bg-white aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2">
 
