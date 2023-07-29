@@ -51,17 +51,49 @@ export default {
 			dropShadow: {
 			},
 			animation: {
-				blink: 'blink 1s step-end infinite',
-				flicker: 'flicker 1s linear 1',
-				'float-1': 'float-2 8s ease-in-out 0.5s infinite normal'
+				pulse: 'pulse 2s infinite',
+				waveform: 'waveform 1.5s infinite both',
+				'waveform-inverse': 'waveform-inverse 1.5s infinite both'
 			},
 			keyframes: {
-				'float-1': {
+				'pulse': {
+					'100%': {
+						opacity: '0',
+						transform: 'scale(150%)'
+					}
+				},
+				'waveform': {
 					'0%, 100%': {
-						transform: 'translateX(0)'
+						transform: 'scaleY(0.2)'
+					},
+					'25%': {
+						transform: 'scaleY(0.6)'
 					},
 					'50%': {
-						transform: 'translateX(-0.25rem)'
+						transform: 'scaleY(1)'
+					},
+					'70%': {
+						transform: 'scaleY(0.4)'
+					},
+					'80%': {
+						transform: 'scaleY(0.75)'
+					}
+				},
+				'waveform-inverse': {
+					'0%, 100%': {
+						transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) scaleY(5)'
+					},
+					'25%': {
+						transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) scaleY(1.67)'
+					},
+					'50%': {
+						transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) scaleY(1)'
+					},
+					'70%': {
+						transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) scaleY(2.5)'
+					},
+					'80%': {
+						transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) scaleY(1.333)'
 					}
 				}
 			},

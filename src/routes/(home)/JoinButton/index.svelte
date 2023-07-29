@@ -4,12 +4,10 @@
   import Arrow from '$lib/icons/Arrow.svelte'
   let cls = ''
   export { cls as class }
-  let loaded = false
-  let filterId: string
 </script>
 
-<div class="{cls} inline-flex align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7">
-    <div class="relative aspect-square h-[5.4375rem] flex-shrink-0">
+<div class="{cls} inline-flex group align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7">
+    <div class="relative aspect-square h-[5.4375rem] flex-shrink-0 group-hover:scale-95 transition duration-300 will-change-transform">
         <!-- Backdrop blur -->
         <div class="inset-0 absolute backdrop-blur-[8px] rounded-full" />
         <!-- Stroke with shadows -->
@@ -42,11 +40,17 @@
             </defs>
         </svg>
         <!-- Mic -->
-        <Image src={mic} bind:loaded bind:filterId class="!bg-none absolute h-1/2 w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" />
+        <Image src={mic} class="!bg-none absolute h-1/2 w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" />
         <!-- Arrow -->
-        <div class="w-8 rounded-full bg-white flex items-center justify-center aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2">
-            <Arrow class="h-3 -rotate-45" />
+        <div class="w-8 rounded-full bg-white flex items-center justify-center aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2 group-hover:scale-150 transition duration-250 group-hover:-translate-y-2/3 group-hover:-translate-x-2/3 will-change-transform">
+            <div class="relative -rotate-45 overflow-hidden text-gray-900">
+                <Arrow class="h-3 group-hover:translate-x-[130%] transition duration-250" />
+                <Arrow class="h-full left-0 absolute top-0 -translate-x-[130%] group-hover:translate-x-0 transition duration-250" />
+            </div>
         </div>
     </div>
-    Join for free
+    <span class="overflow-hidden block relative">
+        <span class="block group-hover:-translate-y-[120%] group-hover:skew-y-6 transition duration-300">Join for free</span>
+        <span class="absolute inset-0 translate-y-[120%] group-hover:translate-y-0 skew-y-6 group-hover:skew-y-0 transition duration-300" aria-hidden>Join for free</span>
+    </span>
 </div>
