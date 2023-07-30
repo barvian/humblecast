@@ -22,7 +22,7 @@
 	type $$Props = Omit<HTMLImgAttributes, 'src'> &
 		ComponentProps<SvelteImg> & {
 			// class?: string,
-			loaded?: boolean,
+			loaded?: boolean
 			// duration?: number,
 			// filterId?: string
 		}
@@ -46,5 +46,12 @@
 		<feDisplacementMap in="SourceGraphic" in2="noise" scale={$filterScale} xChannelSelector="R" yChannelSelector="B" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse" />
 	</filter>
 </svg> -->
-<SvelteImg {...$$restProps} data-loaded={loaded ? '' : undefined} bind:ref on:load={() => { loaded = true }} />
+<SvelteImg
+	{...$$restProps}
+	data-loaded={loaded ? '' : undefined}
+	bind:ref
+	on:load={() => {
+		loaded = true
+	}}
+/>
 <!--  style="filter: url(#{filterId}); --tw-scale-y: {loaded ? 100 : scale*1.2}%; --tw-scale-x: {loaded ? 100 : scale*1.1}%; transition-property: opacity, transform; transition-duration: {duration}ms;" -->

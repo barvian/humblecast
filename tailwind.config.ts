@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import clipPathPlugin from 'tailwind-clip-path'
-import imageRenderingPlugin from 'tailwindcss-image-rendering'
 import containerQueryPlugin from '@tailwindcss/container-queries'
 
 export default {
@@ -34,11 +33,10 @@ export default {
 				'3xl': 'clamp(3rem, 1.833rem + 5.83vw, 6.5rem)',
 				'4xl': 'clamp(4rem, 2.8043478260869565rem + 5.978260869565218vw, 7.4375rem)'
 			},
-			backgroundImage: {
-			},
+			backgroundImage: {},
 			spacing: {
-				'lg': 'clamp(2.00rem, calc(1.91rem + 0.43vw), 2.25rem)',
-				'xl': 'clamp(2.00rem, calc(1.52rem + 2.39vw), 3.38rem)',
+				lg: 'clamp(2.00rem, calc(1.91rem + 0.43vw), 2.25rem)',
+				xl: 'clamp(2.00rem, calc(1.52rem + 2.39vw), 3.38rem)',
 				'2xl': 'clamp(3.00rem, calc(2.48rem + 2.61vw), 4.50rem)'
 			},
 			letterSpacing: {
@@ -48,21 +46,20 @@ export default {
 				relaxed: '1.62',
 				loose: '1.955'
 			},
-			dropShadow: {
-			},
+			dropShadow: {},
 			animation: {
 				pulse: 'pulse 2s infinite',
 				waveform: 'waveform 1.5s infinite both',
 				'waveform-inverse': 'waveform-inverse 1.5s infinite both'
 			},
 			keyframes: {
-				'pulse': {
+				pulse: {
 					'100%': {
 						opacity: '0',
 						transform: 'scale(150%)'
 					}
 				},
-				'waveform': {
+				waveform: {
 					'0%, 100%': {
 						transform: 'scaleY(0.2)'
 					},
