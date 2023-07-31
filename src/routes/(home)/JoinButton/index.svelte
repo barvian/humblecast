@@ -2,15 +2,46 @@
 	import mic from './mic.png?run&width=86'
 	import Image from '$lib/Image.svelte'
 	import Arrow from '$lib/icons/Arrow.svelte'
+	import { spring } from 'svelte/motion'
 	let cls = ''
 	export { cls as class }
+
+	const THRESHOLD = 8
+
+	let arrow: HTMLElement
+	let offset = spring(
+		{ x: 0, y: 0 },
+		{
+			stiffness: 0.025,
+			damping: 0.35
+		}
+	)
+	function handleMouseMove(event: MouseEvent) {
+		let x = event.offsetX - (arrow.offsetLeft + arrow.offsetWidth / 2),
+			y = event.offsetY - (arrow.offsetTop + arrow.offsetHeight / 2)
+		const dist = Math.hypot(x, y)
+		if (dist > THRESHOLD) {
+			// scale down to threshold length
+			x *= THRESHOLD / dist
+			y *= THRESHOLD / dist
+		}
+		$offset = { x, y }
+	}
+	function handleMouseLeave() {
+		$offset = { x: 0, y: 0 }
+	}
 </script>
 
+<!-- svelte-ignore a11y-interactive-supports-focus -->
 <div
+	role="link"
+	on:mouseenter={handleMouseMove}
+	on:mousemove={handleMouseMove}
+	on:mouseleave={handleMouseLeave}
 	class="{cls} inline-flex group align-middle items-center relative -t-1 cursor-not-allowed text-lg font-medium [text-shadow:0_0_2px_rgba(0,0,0,0.25)] gap-7"
 >
 	<div
-		class="relative aspect-square h-[5.4375rem] flex-shrink-0 group-hover:scale-95 transition duration-300 will-change-transform"
+		class="relative aspect-square h-[5.4375rem] flex-shrink-0 group-hover:scale-95 transition duration-300 will-change-transform pointer-events-none"
 	>
 		<!-- Backdrop blur -->
 		<div class="inset-0 absolute backdrop-blur-[8px] rounded-full" />
@@ -87,17 +118,23 @@
 		/>
 		<!-- Arrow -->
 		<div
-			class="w-8 rounded-full bg-white flex items-center justify-center aspect-square absolute left-full top-1/2 -translate-x-2/3 -translate-y-1/2 group-hover:scale-150 transition duration-250 group-hover:-translate-y-2/3 group-hover:-translate-x-2/3 will-change-transform"
+			bind:this={arrow}
+			class="w-8 aspect-square absolute left-full top-1/2 -ml-5 -mt-4 will-change-transform"
+			style:transform="translate({$offset.x}px, {$offset.y}px)"
 		>
-			<div class="relative -rotate-45 overflow-hidden text-gray-900">
-				<Arrow class="h-3 group-hover:translate-x-[130%] transition duration-250" />
-				<Arrow
-					class="h-full left-0 absolute top-0 -translate-x-[130%] group-hover:translate-x-0 transition duration-250"
-				/>
+			<div
+				class="bg-white absolute inset-0 rounded-full flex items-center justify-center group-hover:scale-[130%] transition duration-250"
+			>
+				<div class="relative -rotate-45 overflow-hidden text-gray-900">
+					<Arrow class="h-3 group-hover:translate-x-[130%] transition duration-250" />
+					<Arrow
+						class="h-full left-0 absolute top-0 -translate-x-[130%] group-hover:translate-x-0 transition duration-250"
+					/>
+				</div>
 			</div>
 		</div>
 	</div>
-	<span class="overflow-hidden block relative">
+	<span class="overflow-hidden block relative pointer-events-none">
 		<span class="block group-hover:-translate-y-[120%] group-hover:skew-y-6 transition duration-300"
 			>Join for free</span
 		>
