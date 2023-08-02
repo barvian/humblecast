@@ -11,7 +11,7 @@ export default {
 			white: '#fff',
 			current: 'currentColor',
 			gray: {
-				900: '#1d1d1d'
+				900: '#010625'
 			}
 		},
 		extend: {
