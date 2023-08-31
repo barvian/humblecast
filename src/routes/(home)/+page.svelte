@@ -27,12 +27,12 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <header
-	class="relative pt-[clamp(theme(padding.5),4vw,theme(padding.10))] pb-[calc(theme(spacing.2xl)-theme(spacing.4))] bg-[#0f7Bf9]"
+	class="relative ~pt-5/10 ~pb-8/13.5 bg-[#0f7Bf9]"
 	on:mousemove={({ x, y }) => (mouse = { x, y })}
 >
 	<Noise {mouse} />
 	<div class="container @container relative">
-		<nav class="flex items-center mb-xl">
+		<nav class="flex items-center ~mb-8/13.5">
 			<a href="/"><Logo /></a>
 			<div
 				class="hidden @5xl:flex gap-[2.5em] whitespace-nowrap font-medium text-lg [text-shadow:0_0_2px_rgba(0,0,0,0.25)] mx-auto"
@@ -87,7 +87,7 @@
 				<div class="bg-white h-0.5 rounded-full" />
 			</div>
 		</nav>
-		<h1 class="text-4xl/[85.5%] @6xl:leading-[75%] font-semibold mb-xl">
+		<h1 class="~text-[4rem]/[7.4375rem] leading-[85.5%] @6xl:leading-[75%] font-semibold ~mb-8/13.5">
 			Create and
 			<JoinButton class="hidden @6xl:inline-flex" />
 			monetize your podcast
@@ -156,8 +156,8 @@
 		</div>
 	</div>
 </header>
-<main class="py-2xl" id="content">
-	<div class="container grid grid-cols-1 sm:grid-cols-2 gap-2xl items-start">
+<main class="~py-12/18" id="content">
+	<div class="container grid grid-cols-1 sm:grid-cols-2 ~gap-12/18 items-start">
 		<div class="flex items-stretch w-full max-sm:order-1">
 			<div class="rounded-l-full bg-[#d4dcde] flex-1 relative overflow-hidden">
 				<Image
@@ -226,8 +226,8 @@
 		</div>
 		<div class="@container">
 			<div class="grid grid-cols-1 @md:grid-cols-[1fr_min-content] items-center gap-6">
-				<span class="uppercase font-semibold text-3xl/[85%]">873k</span>
-				<span class="font-semibold text-2xl/[85%] @md:-order-1"
+				<span class="uppercase font-semibold ~text-[3rem]/[6.5rem] leading-[85%]">873k</span>
+				<span class="font-semibold ~text-[1.5rem]/[2.5rem] leading-[.85] @md:-order-1"
 					>Active creators<br />and listeners</span
 				>
 				<hr class="@md:col-span-2 border-white border-DEFAULT" />

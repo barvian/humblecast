@@ -32,6 +32,9 @@ function lqip(cfg, ctx) {
 }
 
 export default defineConfig({
+	optimizeDeps: {
+		exclude: ['@fluid.style/tailwind']
+	},
 	plugins: [
 		sveltekit(),
 		imagetools({
