@@ -96,7 +96,7 @@
 			Distribute your podcast to the most popular listening apps, including Spotify, with just a few
 			simple steps.
 		</p>
-		<div class="flex flex-wrap whitespace-nowrap items-stretch mt-lg">
+		<div class="flex flex-wrap whitespace-nowrap items-stretch ~mt-[2rem]/[2.25rem]">
 			<!-- Have to add bottom margin to all these to give them spacing on mobile, where touch targets are smaller -->
 			<span
 				class="flex mb-4 items-center group gap-3 transition-all hover:gap-5 cursor-not-allowed text-lg font-medium bg-white rounded-full text-[#000322] py-[0.75em] px-[1.5em]"
