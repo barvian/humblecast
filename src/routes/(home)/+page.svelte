@@ -225,7 +225,7 @@
 			<div class="rounded-r-full border flex-shrink-0 border-white aspect-[0.5] w-[22.5%]" />
 		</div>
 		<div class="@container">
-			<div class="grid grid-cols-1 @md:grid-cols-[1fr_min-content] items-center gap-6">
+			<div class="grid grid-cols-1 @md:grid-cols-2 sm:@md:grid-cols-[1fr_min-content] items-center gap-6">
 				<span class="uppercase font-semibold ~text-[3rem]/[6.5rem] leading-[85%]">873k</span>
 				<span class="font-semibold ~text-[1.5rem]/[2.5rem] leading-[.85] @md:-order-1"
 					>Active creators<br />and listeners</span

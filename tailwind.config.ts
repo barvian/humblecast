@@ -2,13 +2,13 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import clipPathPlugin from 'tailwind-clip-path'
 import containerQueryPlugin from '@tailwindcss/container-queries'
-import { fluidCorePlugins, buildFluidExtract, defaultScreensInRems } from '@fluidstyle/tailwindcss-plugin'
-const { '2xl': _, ...screens } = defaultScreensInRems
+import { fluidCorePlugins, fluidExtractor, defaultThemeFontSizeInRems, defaultThemeScreensInRems } from 'fluid-tailwind'
+const { '2xl': _, ...screens } = defaultThemeScreensInRems
 
 export default {
 	content: {
 		files: ['./src/**/*.{html,js,svelte,ts}'],
-		extract: buildFluidExtract()
+		extract: fluidExtractor()
 	},
 	theme: {
 		colors: {
@@ -19,6 +19,7 @@ export default {
 				900: '#010625'
 			}
 		},
+		fontSize: defaultThemeFontSizeInRems,
 		screens: {
 			...screens,
 			xs: '30rem'
@@ -45,7 +46,6 @@ export default {
 				relaxed: '1.62',
 				loose: '1.955'
 			},
-			dropShadow: {},
 			animation: {
 				pulse: 'pulse 2s infinite',
 				waveform: 'waveform 1.5s infinite both',
