@@ -7,6 +7,7 @@
 	import { scale } from 'svelte/transition'
 
 	const SCALE = 1.2
+	const START_TIME = 19
 	const PREFERRED_ASPECT = 0.9
 
 	export let mouse: { x: number; y: number } | undefined
@@ -43,7 +44,7 @@
 			fragment: 'precision highp float;\nprecision highp int;\n' + patchShaders(fragment),
 			uniforms: {
 				u_scale: { value: SCALE },
-				u_time: { value: 0 },
+				u_time: { value: START_TIME },
 				u_res: {
 					value: new Vec4(canvas.clientWidth, canvas.clientHeight, 1, 1)
 				},
@@ -55,13 +56,13 @@
 				u_colorA: { value: new Color('#000025') },
 				u_colorStopA: { value: 0.06 },
 				u_colorB: { value: new Color('#042AC7') },
-				u_colorStopB: { value: 0.16 },
+				u_colorStopB: { value: 0.36 },
 				u_colorC: { value: new Color('#0733E6') },
-				u_colorStopC: { value: 0.2 },
+				u_colorStopC: { value: 0.4 },
 				u_colorD: { value: new Color('#1185FB') },
-				u_colorStopD: { value: 0.45 },
+				u_colorStopD: { value: 0.56 },
 				u_colorE: { value: new Color('#6FC2FF') },
-				u_colorStopE: { value: 0.6895 },
+				u_colorStopE: { value: 0.78 },
 				u_colorF: { value: new Color('#A5C4FF') },
 				u_colorStopF: { value: 0.9 },
 				u_colorG: { value: new Color('#C2BEFF') },
@@ -142,7 +143,7 @@
 		flowmap.velocity.lerp(velocity, velocity.len ? 0.1 : 0.5)
 		flowmap.update()
 
-		program.uniforms.u_time.value = t * 0.001
+		program.uniforms.u_time.value = START_TIME + t * 0.001
 		renderer.render({ scene: mesh })
 	}
 </script>
