@@ -27,7 +27,7 @@
 }
 
 .container {
-	@apply mx-auto w-full max-w-[theme(screens.xl)] px-[max(theme(padding.5),5vw)] xl:px-5;
+	@apply mx-auto w-full max-w-[theme(screens.xl)] ~px-5/9;
 }
 
 :is([class*='entered:']) {
